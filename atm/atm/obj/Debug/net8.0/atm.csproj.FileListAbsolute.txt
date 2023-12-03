@@ -1,0 +1,14 @@
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.AssemblyInfoInputs.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.AssemblyInfo.cs
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\bin\Debug\net8.0\atm.exe
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\bin\Debug\net8.0\atm.deps.json
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\bin\Debug\net8.0\atm.runtimeconfig.json
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\bin\Debug\net8.0\atm.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\bin\Debug\net8.0\atm.pdb
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\refint\atm.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.pdb
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\atm.genruntimeconfig.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm\atm\obj\Debug\net8.0\ref\atm.dll
