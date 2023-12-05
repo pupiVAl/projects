@@ -61,47 +61,47 @@ namespace atm
         static void printOptions(CardHolder currentUser)
         {
             Console.Clear();
-            Console.WriteLine("Welcome {0} {1}", currentUser.ModFirstName, currentUser.ModLastName);
-            Console.WriteLine("Please choose from one of the following options...\n");
-            Console.WriteLine("1. Deposit                        4. Create new bank account");
-            Console.WriteLine("2. Withdraw                       5. Change account");
-            Console.WriteLine("3. Show balance                   6. Exit");
+            Console.WriteLine("Benvenut* {0} {1}", currentUser.ModFirstName, currentUser.ModLastName);
+            Console.WriteLine("Per favore scegli uno delle seguenti azioni...\n");
+            Console.WriteLine("1. Deposita                          4. Crea nuovo account");
+            Console.WriteLine("2. Ritira                            5. Cambia account");
+            Console.WriteLine("3. Mostra bilancio                   6. Esci");
         }
 
         // funzione che permette all'utente di depositare
         static void deposit(CardHolder currentUser)
         {
-            Console.WriteLine("How much money would you like to deposit?");
+            Console.WriteLine("Quanti soldi vorresti depositare? ");
             double deposit = double.Parse(Console.ReadLine());
             currentUser.ModBalance += deposit;
-            Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+            Console.WriteLine("Adesso hai {0}$ nel tuo conto", currentUser.ModBalance);
         }
 
         // funzione che permette di ritirare soldi all'utente
         static void withdraw(CardHolder currentUser)
         {
-            Console.WriteLine("How much money would you like to withdraw?");
+            Console.WriteLine("Quanti soldi vorresti ritirare? ");
             double withdrawl = double.Parse(Console.ReadLine());
             // check if user has enough money
             if(withdrawl > currentUser.ModBalance)
-                Console.WriteLine("Insufficient money!");
+                Console.WriteLine("Soldi insufficienti! ");
             else
             {
                 currentUser.ModBalance -= withdrawl;
-                Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+                Console.WriteLine("Adesso hai {0}$ nel tuo conto", currentUser.ModBalance);
             }
         }
 
         // funzione che permette di vedere il bilancio dell'account
         static void balance(CardHolder currentUser)
         {
-            Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+            Console.WriteLine("Hai {0}$ nel tuo conto", currentUser.ModBalance);
         }
 
         // funzione che permette di creare un nuovo account
         static void createUser(List<CardHolder> users)
         {
-            Console.Write("Insert the pin of the card(10 numbers): ");
+            Console.Write("Inserisci il numero di carta (10 numeri): ");
             string newPin;
             do
             {
@@ -113,12 +113,12 @@ namespace atm
                     if(newPin.Length == 10)
                         break;
                     else
-                        Console.WriteLine("You must insert 10 numbers!");
+                        Console.WriteLine("Devi inserire 10 numeri!");
                 }
-                catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
+                catch(Exception) { Console.WriteLine("Devi inserire solo numeri!"); }
             } while(true);
 
-            Console.Write("Insert the pin of the card(4 numbers): ");
+            Console.Write("Inserisci il pin della carta (4 numeri): ");
             int newCode;
             do
             {
@@ -129,18 +129,18 @@ namespace atm
                     if(idk.Length == 4)
                         break;
                     else
-                        Console.WriteLine("You must insert 4 numbers!");
+                        Console.WriteLine("Devi inserire 4 numeri!");
                 }
-                catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
+                catch(Exception) { Console.WriteLine("Devi inserire solo numeri!"); }
             } while(true);
 
-            Console.Write("Insert the first name: ");
+            Console.Write("Inserisci il nome: ");
             string newFirstName = Console.ReadLine();
 
-            Console.Write("Insert the last name: ");
+            Console.Write("Inserisci il cognome: ");
             string newLastName = Console.ReadLine();
 
-            Console.Write("Insert the balance of the bank account: ");
+            Console.Write("inserisci il bilancio dell'account: ");
             double newBalance;
 
             do
@@ -150,11 +150,11 @@ namespace atm
                     newBalance = double.Parse(Console.ReadLine());
                     break;
                 }
-                catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
+                catch(Exception) { Console.WriteLine("Devi inserire solo numeri!"); }
             } while(true);
 
             users.Add(new CardHolder(newPin, newCode, newFirstName, newLastName, newBalance));
-            Console.WriteLine("Account created successfully!");
+            Console.WriteLine("Account creato senza problemi!");
         }
 
         // funzione che permette di cambiare account su cui si operano le operazioni
@@ -213,9 +213,9 @@ namespace atm
             users.Add(new CardHolder("9316504827", 3516, "Capra", "Verdi", 5.50));
 
             // stampo all'utente
-            Console.WriteLine("----------------------");
-            Console.WriteLine("|Welcome to simpleATM|");
-            Console.WriteLine("----------------------");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("|Benvenut* in simpleATM|");
+            Console.WriteLine("------------------------");
 
             CardHolder currentUser = changeUser(users);
 
