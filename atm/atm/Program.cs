@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace atm
+﻿namespace atm
 {
     //https://www.youtube.com/watch?v=qBI7Qnz9Zho&t=759s
     // creo la classe cardHolder che conterra' ogni utente della banca
@@ -52,7 +50,6 @@ namespace atm
             get { return balance; }
             set { balance = value; }
         }
-
     }
 
     internal class Program
@@ -70,9 +67,30 @@ namespace atm
 
         // funzione che permette all'utente di depositare
         static void deposit(CardHolder currentUser)
-        {
-            Console.WriteLine("How much money would you like to deposit?");
-            double deposit = double.Parse(Console.ReadLine());
+        {     
+            double deposit;
+            while(true)
+            {
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("DEPOSIT");
+                    Console.WriteLine("How much money would you like to deposit?");
+                    deposit = double.Parse(Console.ReadLine());
+                    if(deposit > 0)
+                        break;
+                    else
+                    {
+                        Console.WriteLine("You must insert a number bigger than 0");
+                        Thread.Sleep(2000);
+                    }     
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("You must insert only numbers!");
+                    Thread.Sleep(1500);
+                }
+            }
             currentUser.ModBalance += deposit;
             Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
         }
@@ -80,56 +98,94 @@ namespace atm
         // funzione che permette di ritirare soldi all'utente
         static void withdraw(CardHolder currentUser)
         {
-            Console.WriteLine("How much money would you like to withdraw?");
-            double withdrawl = double.Parse(Console.ReadLine());
-            // check if user has enough money
-            if(withdrawl > currentUser.ModBalance)
-                Console.WriteLine("Insufficient money!");
-            else
+            double withdraw;
+            while(true)
             {
-                currentUser.ModBalance -= withdrawl;
-                Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("WITHDRAW");
+                    Console.WriteLine("How much money would you like to withdraw?");
+                    withdraw = double.Parse(Console.ReadLine());
+                    if(withdraw > 0)
+                    {
+                        if(withdraw > currentUser.ModBalance)
+                            Console.WriteLine("Insufficient money!");
+                        else
+                        {
+                            currentUser.ModBalance -= withdraw;
+                            Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You must insert a number bigger than 0!");
+                        Thread.Sleep(2000);
+                    }
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("You must insert only numbers!");
+                    Thread.Sleep(1500);
+                }
             }
         }
 
         // funzione che permette di vedere il bilancio dell'account
         static void balance(CardHolder currentUser)
         {
-            Console.WriteLine("You now have {0}$ in your bank", currentUser.ModBalance);
+            Console.Clear();
+            Console.WriteLine("BALANCE\nYou now have {0}$ in your bank", currentUser.ModBalance);
         }
 
         // funzione che permette di creare un nuovo account
-        static void createUser(List<CardHolder> users)
+        static CardHolder createUser(List<CardHolder> users)
         {
-            Console.Write("Insert the pin of the card(10 numbers): ");
-            string newPin;
+            string newCardNum;
             do
             {
+                Console.Clear();
+                Console.WriteLine("CREATING NEW USER");
+                Console.Write("Insert the pin of the card(10 numbers): ");
                 try
                 {
-                    newPin = Console.ReadLine();
-                    int.Parse(newPin);
+                    newCardNum = Console.ReadLine();
+                    long.Parse(newCardNum);
 
-                    if(newPin.Length == 10)
-                        break;
+                    if(newCardNum.Length == 10)
+                        if(users.FirstOrDefault(b => b.ModCardNum == newCardNum) == null)
+                            break;
+                        else
+                        {
+                            Console.WriteLine("This card number already exists!");
+                            Thread.Sleep(1500);
+                        }
                     else
+                    {
                         Console.WriteLine("You must insert 10 numbers!");
+                        Thread.Sleep(1500);
+                    }
                 }
-                catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
+                catch(Exception){Console.WriteLine("You must insert only numbers!"); Thread.Sleep(1500);}
             } while(true);
 
-            Console.Write("Insert the pin of the card(4 numbers): ");
-            int newCode;
+            int newPin;
             do
             {
+                Console.Write("Insert the pin of the card(4 numbers): ");
                 try
                 {
-                    newCode = int.Parse(Console.ReadLine());
-                    string idk = newCode.ToString();
-                    if(idk.Length == 4)
-                        break;
+                    newPin = int.Parse(Console.ReadLine());
+                    if(newPin > 0)
+                    {
+                        if(newPin.ToString().Length == 4)
+                            break;
+                        else
+                            Console.WriteLine("You must insert 4 numbers!");
+                    }
                     else
-                        Console.WriteLine("You must insert 4 numbers!");
+                        Console.WriteLine("You must insert numbers bigger than 0!");
                 }
                 catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
             } while(true);
@@ -140,36 +196,44 @@ namespace atm
             Console.Write("Insert the last name: ");
             string newLastName = Console.ReadLine();
 
-            Console.Write("Insert the balance of the bank account: ");
             double newBalance;
-
             do
             {
+                Console.Write("Insert the balance of the bank account: ");
                 try
                 {
                     newBalance = double.Parse(Console.ReadLine());
-                    break;
+                    if(newBalance > 0)
+                        break;
+                    else
+                    {
+                        Console.WriteLine("You must insert a number bigger than 0!");
+                        Thread.Sleep(1500);
+                    }
                 }
-                catch(Exception) { Console.WriteLine("You must insert only numbers!"); }
+                catch(Exception) { Console.WriteLine("You must insert only numbers!"); Thread.Sleep(1500); }
             } while(true);
 
-            users.Add(new CardHolder(newPin, newCode, newFirstName, newLastName, newBalance));
             Console.WriteLine("Account created successfully!");
+            Thread.Sleep(1500);
+            return (new CardHolder(newCardNum, newPin, newFirstName, newLastName, newBalance));
+            
+            
         }
 
         // funzione che permette di cambiare account su cui si operano le operazioni
         static CardHolder changeUser(List<CardHolder> users)
         {
-            // chiedo all'utente di inserire il numero della carta
-            Console.Write("Please insert your debit card number: ");
-            string debitCardNum = "";
+            string debitCardNum;
             // creo la variabile currentUser di tipo CardHolder che conterra' l'utente che corrisponde al numero di carta inserito
             CardHolder currentUser;
-
             // creo un ciclo infinito finche' l'utente non inserisce un numero di carta valido
             while(true)
             {
-                // utilizzo try perche' l'utente e' stupido e potrebbe non inserire una string(?)
+                Console.Clear();
+                Console.WriteLine("CHANGING USER");
+                Console.Write("Please insert the debit card number: ");
+
                 debitCardNum = Console.ReadLine();
                 // check in our db (Data Base) --> our list of users
                 // letteralmente la funzione migliore del mondo, cicla in modo autonomo tutta la lista (db) finche' non trova un corrispondente al valore
@@ -178,15 +242,17 @@ namespace atm
                 if(currentUser != null)
                     break;
                 else
+                {
                     Console.WriteLine("Card number not recognized. Please try again.");
+                    Thread.Sleep(2000);
+                }
             }
 
-            // chiedo all'utente di inserire il suo pin
-            Console.Write("Please enter your pin: ");
-            int userPin = 0;
+            int userPin;
             // creo un ciclo infinito finche' l'utente non inserisce il pin che corrisponde al numero di carta che ha inserito prima
             while(true)
             {
+                Console.Write("Please enter the pin of the card: ");
                 // utilizzo try per non incorrere in errori in caso l'utente non inserisca solo numeri
                 try
                 {
@@ -196,28 +262,65 @@ namespace atm
                     else
                         Console.WriteLine("You insert the wrong pin!");
                 }
-                catch { Console.WriteLine("You insert the wrong pin!"); }
+                catch { Console.WriteLine("You must insert only numbers"); }
             }
             return currentUser;
         }
 
         static void Main(string[] args)
         {
+
             // creo il data base che conterra' gli utenti iscritti nella banca
             // per farlo utilizzo una lista di CardHolder, ogni elemento della lista conterra' un'elemento diverso
             List<CardHolder> users = new List<CardHolder>();
-
             // per comodita' pre-creo 3 account con tutte le informazioni del caso
-            users.Add(new CardHolder("4710368259", 1234, "Emma", "Piccoli", 6969.69));
-            users.Add(new CardHolder("2851306947", 9988, "Tiziano", "Blue", 10000.01));
+            users.Add(new CardHolder("4710368259", 1234, "Emma", "Piccoli", 1024.50));
+            users.Add(new CardHolder("0123456789", 1111, "Lavarris", "Steefhaanooo", 9000.90));
+            users.Add(new CardHolder("2851306947", 9988, "Tiziano", "Blue", 960.50));
             users.Add(new CardHolder("9316504827", 3516, "Capra", "Verdi", 5.50));
 
-            // stampo all'utente
-            Console.WriteLine("----------------------");
-            Console.WriteLine("|Welcome to simpleATM|");
-            Console.WriteLine("----------------------");
+            // chiedo all'utente se vuole loggare o creare un nuovo account
+            char first_choice;
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("----------------------");
+                Console.WriteLine("|Welcome to simpleATM|");
+                Console.WriteLine("----------------------");
 
-            CardHolder currentUser = changeUser(users);
+                Console.Write("Do you want to log in (L) or to sign in (S)? ");
+                try
+                {
+                    first_choice = char.ToUpper(char.Parse(Console.ReadLine()));
+                    if(first_choice == 'L' || first_choice == 'S')
+                        break;
+                    else
+                    {
+                        Console.WriteLine("You must insert L or S");
+                        Thread.Sleep(1500);
+                    }
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("You must insert only one character!");
+                    Thread.Sleep(1500);
+                }
+            }
+            CardHolder currentUser;
+
+            if(first_choice == 'S')
+            {
+                Console.Clear();
+                Console.WriteLine("SIGN IN");
+                currentUser = createUser(users);
+                users.Add(currentUser);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("LOG IN");
+                currentUser = changeUser(users);
+            }
 
             // dentro questo do while c'e' tutto il programma finale!
             // dentro la variabile opt contengo la scelta dell'utente fra quelle proposte
@@ -233,7 +336,7 @@ namespace atm
                         if(opt == 1 || opt == 2 || opt == 3 || opt == 4 || opt == 5 || opt == 6)
                             break;
                         else
-                            Console.WriteLine("You must insert a valid number (1, 2, 3, 4)!");
+                            Console.WriteLine("You must insert a valid number (1, 2, 3, 4, 5, 6)!");
                     }
                     catch { Console.WriteLine("You must insert a number!"); }
 
@@ -268,7 +371,6 @@ namespace atm
                     case 6:
                         break;
                         // non c'e' bisogno del ramo default perche' controllo gia' prima che l'utente scelta solo numeri contemplati
-
                 }
                 // quando l'utente digita '6', cioe' il numero che corrisponde all'uscita del programma fermo il loop
             } while(opt != 6);

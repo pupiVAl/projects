@@ -1,0 +1,15 @@
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\bin\Debug\net8.0\atm-ita.exe
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\bin\Debug\net8.0\atm-ita.deps.json
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\bin\Debug\net8.0\atm-ita.runtimeconfig.json
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\bin\Debug\net8.0\atm-ita.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\bin\Debug\net8.0\atm-ita.pdb
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.AssemblyInfoInputs.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.AssemblyInfo.cs
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.sourcelink.json
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\refint\atm-ita.dll
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.pdb
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\atm-ita.genruntimeconfig.cache
+C:\Users\thoma\Desktop\2023-24\c#\projects\atm-ita\atm-ita\obj\Debug\net8.0\ref\atm-ita.dll
